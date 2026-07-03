@@ -28,16 +28,18 @@ const { title, description, tech, github, demo } = Astro.props;
     flex-direction: column;
     gap: 0.5rem;
     background: var(--card);
-    border: 2px solid var(--ink);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 1.75rem;
-    box-shadow: 6px 6px 0 var(--ink);
-    transition: transform 0.15s var(--snap), box-shadow 0.15s var(--snap);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.15s var(--snap), box-shadow 0.15s var(--snap),
+      border-color 0.15s var(--snap);
   }
 
   .card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 10px 10px 0 var(--accent);
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: var(--shadow-lift);
   }
 
   h3 {

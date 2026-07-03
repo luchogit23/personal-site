@@ -1,31 +1,38 @@
 /* ---------------------------------------------------------------
    Design tokens — the single source of truth for the site's look.
-   Bold & personal: warm paper background, ink text, hot accent.
+   Clean & friendly: white background, blue accent, deep navy ink,
+   soft cards and shadows.
    --------------------------------------------------------------- */
 :root {
   /* Colors */
-  --paper: #faf4ec;
-  --ink: #16130f;
-  --accent: #ff4d24;
-  --accent-soft: #ffe3da;
-  --electric: #2b46ff;
-  --muted: #6b645b;
+  --paper: #ffffff;
+  --surface: #f4f7fc;
+  --ink: #0f1f3d;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --accent-soft: #dbeafe;
+  --border: #dfe7f2;
+  --muted: #55627a;
   --card: #ffffff;
 
   /* Typography */
-  --font-display: 'Archivo Black', system-ui, sans-serif;
-  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 
-  --text-hero: clamp(3rem, 9vw, 6.5rem);
-  --text-xl: clamp(2rem, 5vw, 3.5rem);
-  --text-lg: clamp(1.4rem, 3vw, 2rem);
-  --text-md: 1.125rem;
-  --text-sm: 0.9rem;
+  --text-hero: clamp(2.75rem, 8vw, 5.5rem);
+  --text-xl: clamp(1.9rem, 4.5vw, 3rem);
+  --text-lg: clamp(1.3rem, 2.5vw, 1.7rem);
+  --text-md: 1.0625rem;
+  --text-sm: 0.875rem;
 
   /* Spacing & layout */
   --space-section: clamp(4rem, 10vw, 7rem);
   --max-width: 72rem;
   --radius: 1rem;
+
+  /* Elevation */
+  --shadow-soft: 0 2px 8px rgba(15, 31, 61, 0.05), 0 12px 32px rgba(15, 31, 61, 0.07);
+  --shadow-lift: 0 4px 12px rgba(37, 99, 235, 0.12), 0 20px 44px rgba(15, 31, 61, 0.12);
 
   /* Motion */
   --snap: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -47,7 +54,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--text-md);
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -55,9 +62,10 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  line-height: 1.05;
+  font-weight: 800;
+  line-height: 1.1;
   margin: 0 0 0.5em;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 h1 {
@@ -74,19 +82,19 @@ h3 {
 
 p {
   margin: 0 0 1em;
-  max-width: 60ch;
+  max-width: 62ch;
 }
 
 a {
-  color: var(--ink);
-  text-decoration-color: var(--accent);
+  color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
   transition: color 0.15s var(--snap);
 }
 
 a:hover {
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 
 img {
@@ -112,54 +120,60 @@ img {
 
 .eyebrow {
   display: inline-block;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--text-sm);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   color: var(--accent);
   margin-bottom: 1rem;
 }
 
 .btn {
   display: inline-block;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--text-md);
-  color: var(--paper);
-  background: var(--ink);
-  padding: 0.9rem 1.8rem;
+  color: #ffffff;
+  background: var(--accent);
+  padding: 0.85rem 1.75rem;
   border-radius: 999px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--accent);
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
   transition: transform 0.15s var(--snap), background 0.15s var(--snap),
-    color 0.15s var(--snap);
+    border-color 0.15s var(--snap), box-shadow 0.15s var(--snap), color 0.15s var(--snap);
 }
 
 .btn:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--paper);
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: #ffffff;
   transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.3);
 }
 
 .btn--ghost {
   background: transparent;
   color: var(--ink);
+  border-color: var(--border);
+  box-shadow: none;
 }
 
 .btn--ghost:hover {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+  box-shadow: none;
 }
 
 .tag {
   display: inline-block;
   font-size: var(--text-sm);
-  font-weight: 500;
+  font-weight: 600;
   background: var(--accent-soft);
-  color: var(--ink);
+  color: var(--accent-dark);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
 }
