@@ -1,0 +1,71 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tech: string[];
+  github?: string;
+  demo?: string;
+}
+
+const { title, description, tech, github, demo } = Astro.props;
+---
+
+<article class="card">
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <ul class="tech" aria-label="Technologies used">
+    {tech.map((t) => <li class="tag">{t}</li>)}
+  </ul>
+  <div class="links">
+    {github && <a href={github}>GitHub ↗</a>}
+    {demo && <a href={demo}>Live demo ↗</a>}
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--card);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    box-shadow: 6px 6px 0 var(--ink);
+    transition: transform 0.15s var(--snap), box-shadow 0.15s var(--snap);
+  }
+
+  .card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0 var(--accent);
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  .links a {
+    font-weight: 700;
+  }
+</style>

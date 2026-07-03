@@ -1,0 +1,178 @@
+/* ---------------------------------------------------------------
+   Design tokens — the single source of truth for the site's look.
+   Bold & personal: warm paper background, ink text, hot accent.
+   --------------------------------------------------------------- */
+:root {
+  /* Colors */
+  --paper: #faf4ec;
+  --ink: #16130f;
+  --accent: #ff4d24;
+  --accent-soft: #ffe3da;
+  --electric: #2b46ff;
+  --muted: #6b645b;
+  --card: #ffffff;
+
+  /* Typography */
+  --font-display: 'Archivo Black', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+
+  --text-hero: clamp(3rem, 9vw, 6.5rem);
+  --text-xl: clamp(2rem, 5vw, 3.5rem);
+  --text-lg: clamp(1.4rem, 3vw, 2rem);
+  --text-md: 1.125rem;
+  --text-sm: 0.9rem;
+
+  /* Spacing & layout */
+  --space-section: clamp(4rem, 10vw, 7rem);
+  --max-width: 72rem;
+  --radius: 1rem;
+
+  /* Motion */
+  --snap: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.05;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: var(--text-hero);
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+h3 {
+  font-size: var(--text-lg);
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: 60ch;
+}
+
+a {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: color 0.15s var(--snap);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+/* Shared utilities */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--text-md);
+  color: var(--paper);
+  background: var(--ink);
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s var(--snap), background 0.15s var(--snap),
+    color 0.15s var(--snap);
+}
+
+.btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.tag {
+  display: inline-block;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  background: var(--accent-soft);
+  color: var(--ink);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

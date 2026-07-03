@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<BaseLayout title="Projects — Luis Jiménez">
+  <section class="container intro-block">
+    <p class="eyebrow">Projects</p>
+    <h1>Stuff I've shipped<span class="accent">.</span></h1>
+    <p class="lede">
+      Each project below lives in its own Markdown file — adding one to this page
+      is as easy as adding a file to <code>src/content/projects/</code>.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid">
+        {projects.map(({ data }) => <ProjectCard {...data} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro-block {
+    padding-block: clamp(4rem, 10vw, 6rem) 0;
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  .lede {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    max-width: 42ch;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    gap: 2rem;
+  }
+</style>

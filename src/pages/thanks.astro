@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Thanks — Luis Jiménez">
+  <section class="container wrap">
+    <p class="eyebrow">Message sent</p>
+    <h1>Got it<span class="accent">.</span></h1>
+    <p class="lede">Thanks for reaching out — I'll get back to you soon.</p>
+    <a class="btn" href="/">Back home</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .wrap {
+    padding-block: clamp(4rem, 12vw, 8rem);
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  .lede {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+</style>

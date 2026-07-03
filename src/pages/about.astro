@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// TODO: Luis — edit these to match your real skills, grouped however feels natural
+const skillGroups = [
+  {
+    title: 'Languages & frameworks',
+    skills: ['TypeScript', 'Python', 'JavaScript', 'HTML/CSS', 'Astro', 'React'],
+  },
+  {
+    title: 'Tools & platforms',
+    skills: ['Git & GitHub', 'Netlify', 'Docker', 'PostgreSQL', 'Figma'],
+  },
+  {
+    title: 'The human stuff',
+    skills: ['Clear writing', 'Mentoring', 'Bilingual (EN/ES)', 'Shipping > perfecting'],
+  },
+];
+
+// TODO: Luis — replace with your actual hobbies (emoji + name + one fun line)
+const hobbies = [
+  { emoji: '🎸', name: 'Music', blurb: 'What I play, listen to, or obsess over.' },
+  { emoji: '⚽', name: 'Sports', blurb: 'The team I suffer for, the sport I actually play.' },
+  { emoji: '📚', name: 'Reading', blurb: 'What is on the nightstand right now.' },
+  { emoji: '🍳', name: 'Cooking', blurb: 'The dish I make when I want to impress.' },
+];
+---
+
+<BaseLayout title="About — Luis Jiménez">
+  <section class="container intro-block">
+    <p class="eyebrow">About me</p>
+    <h1>The story so far<span class="accent">.</span></h1>
+    <!-- TODO: Luis — this is the heart of the site. Write 2–4 short paragraphs:
+         where you're from, how you got into what you do, what drives you,
+         and what you're looking for next. Story, not bullet points. -->
+    <div class="bio">
+      <p>
+        Start with where you come from and the moment you got hooked on what you do
+        now. The best bios read like the opening of a good conversation, not a
+        cover letter.
+      </p>
+      <p>
+        Then the middle: what you've worked on, what you're good at, and — more
+        interesting — what you care about when you work. Do you love untangling
+        messy systems? Teaching? Building things people actually use?
+      </p>
+      <p>
+        Close with now: what you're doing today and what you'd love to do next.
+        Give people a reason to hit the contact page.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Skills</p>
+      <h2>What I bring</h2>
+      <div class="skills-grid">
+        {
+          skillGroups.map(({ title, skills }) => (
+            <div class="skill-group">
+              <h3>{title}</h3>
+              <ul>
+                {skills.map((s) => (
+                  <li class="tag">{s}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section hobbies-section">
+    <div class="container">
+      <p class="eyebrow">Hobbies</p>
+      <h2>Off the clock</h2>
+      <div class="hobbies-grid">
+        {
+          hobbies.map(({ emoji, name, blurb }) => (
+            <div class="hobby">
+              <span class="emoji" aria-hidden="true">{emoji}</span>
+              <h3>{name}</h3>
+              <p>{blurb}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro-block {
+    padding-block: clamp(4rem, 10vw, 6rem) 0;
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  .bio p {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    max-width: 48ch;
+  }
+
+  .skills-grid,
+  .hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .skill-group h3,
+  .hobby h3 {
+    font-size: 1.25rem;
+  }
+
+  .skill-group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hobbies-section {
+    background: var(--accent-soft);
+  }
+
+  .hobby {
+    background: var(--card);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .hobby .emoji {
+    font-size: 2rem;
+  }
+
+  .hobby p {
+    color: var(--muted);
+    margin: 0;
+  }
+</style>

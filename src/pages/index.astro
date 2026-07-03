@@ -1,0 +1,112 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const featured = (await getCollection('projects', ({ data }) => data.featured)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<BaseLayout title="Luis Jiménez — builder, tinkerer, human">
+  <section class="hero container">
+    <p class="eyebrow">Hey, I'm Luis — most people call me Lucho</p>
+    <h1>
+      I build things<br />and tell you<br /><span class="accent">why they matter.</span>
+    </h1>
+    <!-- TODO: Luis — swap in your real one-liner: what you do + what makes you, you -->
+    <p class="intro">
+      Software person by trade, curious by default. This site is the full picture —
+      the skills, the projects, the hobbies, and the story that connects them.
+    </p>
+    <div class="cta">
+      <a class="btn" href="/projects">See my work</a>
+      <a class="btn btn--ghost" href="/about">More about me</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Featured work</p>
+      <h2>Things I've built</h2>
+      <div class="grid">
+        {featured.map(({ data }) => <ProjectCard {...data} />)}
+      </div>
+      <p class="more"><a href="/projects">All projects →</a></p>
+    </div>
+  </section>
+
+  <section class="section strip">
+    <div class="container">
+      <p class="eyebrow eyebrow--light">Beyond the keyboard</p>
+      <h2>Not just a résumé</h2>
+      <!-- TODO: Luis — tease your actual hobbies here (they live on the About page) -->
+      <p>
+        When I'm not shipping code I'm probably deep in a hobby. The About page has
+        the whole story — the professional side and the human one.
+      </p>
+      <a class="btn btn--invert" href="/about">Get to know me</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: clamp(4rem, 12vw, 8rem) clamp(2rem, 6vw, 4rem);
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  .intro {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    max-width: 38ch;
+    margin-top: 1.5rem;
+  }
+
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .more {
+    margin-top: 2rem;
+    font-weight: 700;
+  }
+
+  .strip {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .eyebrow--light {
+    color: var(--accent);
+  }
+
+  .strip p {
+    color: color-mix(in srgb, var(--paper) 80%, transparent);
+  }
+
+  .btn--invert {
+    background: var(--accent);
+    border-color: var(--accent);
+    margin-top: 1rem;
+  }
+
+  .btn--invert:hover {
+    background: var(--paper);
+    border-color: var(--paper);
+    color: var(--ink);
+  }
+</style>
